@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nueva Tech | Engineering the Unprecedented</title>
+    <meta
+      name="description"
+      content="Nueva Tech delivers expert-level technical consulting and advanced technology solutions across software, hardware, and cybersecurity domains."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrapper">
+        <a class="brand" href="#home" aria-label="Nueva Tech Home">
+          <span class="brand-mark">NT</span>
+          <span class="brand-name">Nueva Tech</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero section">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Advanced Technology Consulting</p>
+            <h1>Engineering the Unprecedented.</h1>
+            <h2>
+              Nueva Tech delivers expert-level technical consulting and builds
+              advanced technology solutions that bridge the gap between
+              imagination and reality.
+            </h2>
+            <a class="button" href="#services">Explore Our Services</a>
+          </div>
+          <div class="hero-visual" role="img" aria-label="Nueva Tech innovation showcase">
+            <div class="hero-glow"></div>
+            <p>Software • Hardware • Cybersecurity • Field Ops</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container narrow">
+          <h2>Pushing the Boundaries of Applied Technology.</h2>
+          <p>
+            Technology isn't just about maintaining the status quo; it's about
+            building what hasn't existed before. Founded by Jeremy, Nueva Tech
+            is driven by a mission to solve complex, high-stakes technical
+            challenges.
+          </p>
+          <p>
+            From architecting hardened security systems and exploring quantum
+            computing applications to deploying advanced hardware, we thrive on
+            the frontier of innovation. Whether tackling deep-level programming
+            or providing hands-on field expertise, we bring a rigorous,
+            analytical approach to every project.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="container">
+          <h2>Specialized Technical Expertise.</h2>
+          <p class="section-intro">
+            We offer comprehensive consulting, troubleshooting, and custom
+            development across both software and hardware domains.
+          </p>
+          <div class="services-grid">
+            <article class="card">
+              <h3>Advanced Hardware &amp; Robotics</h3>
+              <p>
+                Custom design, configuration, and troubleshooting of
+                high-performance systems, including complex flight controllers
+                and unmanned aerial vehicles (UAVs).
+              </p>
+            </article>
+            <article class="card">
+              <h3>Algorithmic Programming</h3>
+              <p>
+                Developing specialized software solutions, including classical
+                algorithms, automated data models, and trading bots.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Hardened Cybersecurity</h3>
+              <p>
+                Architecting highly secure, difficult-to-compromise
+                infrastructure, including analog-to-digital configurations and
+                air-gapped environments.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Expert Field Troubleshooting</h3>
+              <p>
+                On-site and remote technical support, resolving intricate issues
+                across home labs, cloud deployments, and enterprise hardware.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="container contact-grid">
+          <div>
+            <h2>Ready to Build Something New?</h2>
+            <p>
+              Whether you need immediate troubleshooting for a critical system
+              or are looking to partner on a groundbreaking technological
+              project, Nueva Tech has the expertise to execute.
+            </p>
+          </div>
+          <form class="contact-form" action="mailto:hello@nuevatech.io" method="post" enctype="text/plain">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required />
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+
+            <label for="details">Project/Issue Description</label>
+            <textarea id="details" name="details" rows="5" required></textarea>
+
+            <button type="submit" class="button">Request a Consultation</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <span id="year"></span> Nueva Tech. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
