@@ -20,7 +20,7 @@
     <header class="site-header">
       <div class="container nav-wrapper">
         <a class="brand" href="#home" aria-label="Nueva Tech Home">
-          <span class="brand-mark">NT</span>
+          <img class="brand-logo" src="100pxNT.png" alt="Nueva Tech logo" />
           <span class="brand-name">Nueva Tech</span>
         </a>
         <nav class="site-nav" aria-label="Primary navigation">
@@ -44,29 +44,41 @@
             </h2>
             <a class="button" href="#services">Explore Our Services</a>
           </div>
-          <div class="hero-visual" role="img" aria-label="Nueva Tech innovation showcase">
-            <div class="hero-glow"></div>
-            <p>Software • Hardware • Cybersecurity • Field Ops</p>
+          <div class="hero-visual">
+            <img src="server.jpg" alt="Advanced server and networking equipment" />
+            <div class="hero-overlay">
+              <p>Software • Hardware • Cybersecurity • Field Ops</p>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="section" id="about">
-        <div class="container narrow">
-          <h2>Pushing the Boundaries of Applied Technology.</h2>
-          <p>
-            Technology isn't just about maintaining the status quo; it's about
-            building what hasn't existed before. Founded by Jeremy, Nueva Tech
-            is driven by a mission to solve complex, high-stakes technical
-            challenges.
-          </p>
-          <p>
-            From architecting hardened security systems and exploring quantum
-            computing applications to deploying advanced hardware, we thrive on
-            the frontier of innovation. Whether tackling deep-level programming
-            or providing hands-on field expertise, we bring a rigorous,
-            analytical approach to every project.
-          </p>
+        <div class="container about-grid">
+          <figure class="about-image-frame">
+            <img src="About_us.jpg" alt="Nueva Tech field engineering and drone operations" />
+          </figure>
+          <div>
+            <h2>Pushing the Boundaries of Applied Technology.</h2>
+            <p>
+              Technology isn't just about maintaining the status quo; it's about
+              building what hasn't existed before. Founded by Jeremy, Nueva Tech
+              is driven by a mission to solve complex, high-stakes technical
+              challenges.
+            </p>
+            <p>
+              From architecting hardened security systems and exploring quantum
+              computing applications to deploying advanced hardware, we thrive on
+              the frontier of innovation. Whether tackling deep-level
+              programming or providing hands-on field expertise, we bring a
+              rigorous, analytical approach to every project.
+            </p>
+          </div>
+          <aside class="founder-card" aria-label="Founder profile">
+            <img src=".png" alt="Jeremy, founder of Nueva Tech" />
+            <h3>Jeremy</h3>
+            <p>Founder &amp; Lead Engineer</p>
+          </aside>
         </div>
       </section>
 
@@ -79,6 +91,7 @@
           </p>
           <div class="services-grid">
             <article class="card">
+              <img class="card-image" src="server.jpg" alt="Enterprise networking and server infrastructure" />
               <h3>Advanced Hardware &amp; Robotics</h3>
               <p>
                 Custom design, configuration, and troubleshooting of
@@ -87,6 +100,7 @@
               </p>
             </article>
             <article class="card">
+              <img class="card-image" src="dees hands.jpg" alt="Software engineering and algorithm development workstation" />
               <h3>Algorithmic Programming</h3>
               <p>
                 Developing specialized software solutions, including classical
@@ -94,6 +108,7 @@
               </p>
             </article>
             <article class="card">
+              <img class="card-image" src="Frelance_cloud.png" alt="Cloud dashboard and distributed analytics interface" />
               <h3>Hardened Cybersecurity</h3>
               <p>
                 Architecting highly secure, difficult-to-compromise
@@ -102,6 +117,7 @@
               </p>
             </article>
             <article class="card">
+              <img class="card-image" src="About_us.jpg" alt="Field diagnostics and on-site technical deployment" />
               <h3>Expert Field Troubleshooting</h3>
               <p>
                 On-site and remote technical support, resolving intricate issues
@@ -109,6 +125,13 @@
               </p>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="section brand-showcase" aria-label="Nueva Tech branding">
+        <div class="container brand-showcase-grid">
+          <img class="brand-banner" src="Nueva Tech LOGO.jpg" alt="Nueva Tech full logo banner" />
+          <img class="brand-badge" src="Frelancelogo.png" alt="Nueva Tech brand icon" />
         </div>
       </section>
 
