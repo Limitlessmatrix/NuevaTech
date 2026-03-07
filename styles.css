@@ -1,7 +1,5 @@
 :root {
   --bg: #070b14;
-  --bg-soft: #101a2a;
-  --surface: #121f32;
   --surface-border: #223753;
   --text: #e8eefb;
   --text-muted: #acbad0;
@@ -60,15 +58,12 @@ body {
   font-weight: 700;
 }
 
-.brand-mark {
+.brand-logo {
   width: 2.2rem;
   height: 2.2rem;
-  display: grid;
-  place-items: center;
   border-radius: 0.55rem;
-  background: linear-gradient(130deg, var(--accent), var(--accent-2));
-  color: #071324;
-  font-size: 0.9rem;
+  object-fit: cover;
+  border: 1px solid rgb(95 130 170 / 70%);
 }
 
 .site-nav {
@@ -91,7 +86,7 @@ body {
   display: grid;
   gap: 2rem;
   align-items: center;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.05fr 0.95fr;
 }
 
 .eyebrow {
@@ -140,32 +135,80 @@ h2 {
   border: 1px solid var(--surface-border);
   border-radius: 1rem;
   min-height: 320px;
-  background:
-    linear-gradient(165deg, rgb(28 47 74 / 95%), rgb(8 14 25 / 95%)),
-    radial-gradient(circle at 80% 20%, rgb(31 196 255 / 30%), transparent 40%);
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 1.5rem;
   overflow: hidden;
 }
 
-.hero-visual p {
-  position: relative;
-  z-index: 1;
+.hero-visual img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+  filter: brightness(0.72) saturate(1.1);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(5 10 18 / 88%) 8%, rgb(7 13 24 / 20%));
+  display: flex;
+  align-items: end;
+  padding: 1.25rem;
+}
+
+.hero-overlay p {
+  margin: 0;
   font-weight: 600;
   color: #d7ebff;
 }
 
-.hero-glow {
-  position: absolute;
-  inset: auto -20% -50% -20%;
-  height: 280px;
-  background: radial-gradient(circle, rgb(31 196 255 / 35%), transparent 65%);
+.about-grid {
+  display: grid;
+  gap: 1.4rem;
+  grid-template-columns: 1.05fr 1fr 0.6fr;
+  align-items: stretch;
 }
 
-.narrow {
-  max-width: 820px;
+.about-image-frame,
+.founder-card,
+.card,
+.contact-form,
+.brand-showcase-grid {
+  border: 1px solid var(--surface-border);
+  border-radius: 0.9rem;
+  background: linear-gradient(160deg, rgb(19 34 54 / 85%), rgb(12 22 36 / 90%));
+}
+
+.about-image-frame {
+  margin: 0;
+  overflow: hidden;
+  min-height: 320px;
+}
+
+.about-image-frame img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+}
+
+.founder-card {
+  padding: 0.9rem;
+  text-align: center;
+}
+
+.founder-card img {
+  width: 100%;
+  max-width: 210px;
+  border-radius: 0.75rem;
+  object-fit: cover;
+}
+
+.founder-card h3 {
+  margin: 0.8rem 0 0.25rem;
+}
+
+.founder-card p {
+  margin: 0;
 }
 
 p {
@@ -185,16 +228,49 @@ p {
 }
 
 .card {
-  background: linear-gradient(160deg, rgb(19 34 54 / 85%), rgb(12 22 36 / 90%));
-  border: 1px solid var(--surface-border);
-  border-radius: 0.9rem;
-  padding: 1.2rem;
+  padding: 1rem;
+}
+
+.card-image {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 0.65rem;
+  margin-bottom: 0.85rem;
+  border: 1px solid rgb(68 102 143 / 70%);
 }
 
 .card h3 {
   margin-top: 0;
   margin-bottom: 0.6rem;
   font-size: 1.2rem;
+}
+
+.brand-showcase {
+  padding-top: 2rem;
+}
+
+.brand-showcase-grid {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.brand-banner {
+  width: 100%;
+  border-radius: 0.75rem;
+  object-fit: cover;
+}
+
+.brand-badge {
+  width: 110px;
+  height: 110px;
+  border-radius: 0.7rem;
+  border: 1px solid rgb(73 103 142 / 70%);
+  object-fit: cover;
+  background: #0f1b2d;
 }
 
 .contact-grid {
@@ -205,9 +281,6 @@ p {
 }
 
 .contact-form {
-  background: rgb(15 26 43 / 95%);
-  border: 1px solid var(--surface-border);
-  border-radius: 0.9rem;
   padding: 1rem;
   display: grid;
   gap: 0.65rem;
@@ -244,11 +317,26 @@ textarea:focus {
   font-size: 0.95rem;
 }
 
+@media (max-width: 950px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-card img {
+    max-width: 260px;
+  }
+}
+
 @media (max-width: 850px) {
   .hero-grid,
   .contact-grid,
-  .services-grid {
+  .services-grid,
+  .brand-showcase-grid {
     grid-template-columns: 1fr;
+  }
+
+  .brand-badge {
+    justify-self: start;
   }
 
   .site-nav {
