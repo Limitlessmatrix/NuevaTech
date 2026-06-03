@@ -1,165 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nueva Tech | Engineering the Unprecedented</title>
-    <meta
-      name="description"
-      content="Nueva Tech delivers expert-level technical consulting and advanced technology solutions across software, hardware, and cybersecurity domains."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container nav-wrapper">
-        <a class="brand" href="#home" aria-label="Nueva Tech Home">
-          <img class="brand-logo" src="100pxNT.png" alt="Nueva Tech logo" />
-          <span class="brand-name">Nueva Tech</span>
-        </a>
-        <nav class="site-nav" aria-label="Primary navigation">
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nueva Tech builds products and delivers expert technical consulting across software, hardware, cybersecurity, and field operations. Home of GrantWritePro, Ghost Factory, and more." />
+  <title>Nueva Tech | Products & Technical Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ─── Header ─── -->
+  <header class="site-header" role="banner">
+    <div class="container nav-wrapper">
+      <a href="#home" class="brand" aria-label="Nueva Tech Home">
+        <img src="https://nuevatech.cloud/100pxNT.png" alt="Nueva Tech logo" class="brand-logo" />
+        <span>Nueva Tech</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#results">Results</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <main id="home">
-      <section class="hero section">
-        <div class="container hero-grid">
-          <div>
-            <p class="eyebrow">Advanced Technology Consulting</p>
-            <h1>Engineering the Unprecedented.</h1>
-            <h2>
-              Nueva Tech delivers expert-level technical consulting and builds
-              advanced technology solutions that bridge the gap between
-              imagination and reality.
-            </h2>
-            <a class="button" href="#services">Explore Our Services</a>
+  <main>
+    <!-- ─── Hero ─── -->
+    <section id="home" class="section hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Products + Technical Consulting</p>
+          <h1>We Build Products.<br/>We Solve Problems.</h1>
+          <h2>Nueva Tech is a product studio and technical consultancy. We build SaaS platforms, decentralized systems, and high-performance infrastructure from the ground up.</h2>
+          <a href="#products" class="button">See What We're Building</a>
+        </div>
+        <div class="hero-visual">
+          <img src="https://nuevatech.cloud/server.jpg" alt="Advanced server and networking equipment" />
+          <div class="hero-overlay">
+            <p>Software &bull; Hardware &bull; Cybersecurity &bull; Field Ops</p>
           </div>
-          <div class="hero-visual">
-            <img src="server.jpg" alt="Advanced server and networking equipment" />
-            <div class="hero-overlay">
-              <p>Software • Hardware • Cybersecurity • Field Ops</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── About ─── -->
+    <section id="about" class="section">
+      <div class="container about-grid">
+        <figure class="about-image-frame">
+          <img src="https://nuevatech.cloud/About_us.jpg" alt="Nueva Tech field engineering and drone operations" />
+        </figure>
+        <div>
+          <h2>Pushing the Boundaries of Applied Technology.</h2>
+          <p>
+            Technology isn't just about maintaining the status quo. It's about building what hasn't existed before.
+            Founded by Jeremy, Nueva Tech is driven by a mission to solve complex, high-stakes technical challenges
+            and ship real products that generate revenue.
+          </p>
+          <p>
+            From AI-powered SaaS platforms and blockchain marketplaces to hardened security systems and drone deployments,
+            we thrive on the frontier of innovation. Whether tackling deep-level programming, building production infrastructure,
+            or providing hands-on field expertise, we bring a rigorous, analytical approach to every project.
+          </p>
+        </div>
+        <aside class="founder-card" aria-label="Founder profile">
+          <img src="https://nuevatech.cloud/profile_picture.png" alt="Jeremy, founder of Nueva Tech" />
+          <h3>Jeremy</h3>
+          <p>Founder &amp; Lead Engineer</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ─── Products ─── -->
+    <section id="products" class="section">
+      <div class="container">
+        <p class="eyebrow">What We're Building</p>
+        <h2>Products by Nueva Tech.</h2>
+        <p class="section-intro">
+          We don't just consult. We build and ship our own products. These are live platforms solving real problems.
+        </p>
+
+        <div class="products-grid">
+          <!-- Grant Write Pro -->
+          <div class="product-card product-card--featured">
+            <div class="product-badge">Live</div>
+            <div class="product-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="4" width="32" height="40" rx="4" stroke="currentColor" stroke-width="2.5"/>
+                <line x1="14" y1="14" x2="34" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="14" y1="20" x2="30" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="14" y1="26" x2="26" y2="26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M28 30l4 4 8-8" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>GrantWritePro</h3>
+            <p class="product-tagline">AI-powered grant writing that wins.</p>
+            <p>
+              Write competitive grant proposals in minutes, not weeks. Multi-model AI (Claude, GPT-4o, Gemini, Ollama)
+              grounded in your organization's own documents via RAG. Search 50,000+ grants, generate proposals with
+              built-in success scoring, and export to DOCX or PDF.
+            </p>
+            <div class="product-stats">
+              <div class="stat">
+                <span class="stat-value">50K+</span>
+                <span class="stat-label">Grants searchable</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">&lt; 5 min</span>
+                <span class="stat-label">Avg draft time</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">87/100</span>
+                <span class="stat-label">Avg success score</span>
+              </div>
+            </div>
+            <div class="product-tech">
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Redis</span>
+              <span class="tech-tag">Qdrant</span>
+              <span class="tech-tag">Ollama</span>
+            </div>
+            <a href="https://grantwritepro.cloud" class="button" target="_blank" rel="noopener">Visit GrantWritePro</a>
+          </div>
+
+          <!-- Ghost Factory -->
+          <div class="product-card">
+            <div class="product-badge product-badge--dev">In Development</div>
+            <div class="product-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 4L4 16v16l20 12 20-12V16L24 4z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M4 16l20 12 20-12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <line x1="24" y1="28" x2="24" y2="44" stroke="currentColor" stroke-width="2"/>
+                <circle cx="24" cy="22" r="4" stroke="var(--accent)" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>Ghost Factory</h3>
+            <p class="product-tagline">Decentralized 3D printing marketplace.</p>
+            <p>
+              A smart contract-governed marketplace connecting designers with certified 3D print shops worldwide.
+              Dual-chain architecture: Polygon/Arbitrum for public operations (job postings, payments, credentials,
+              DAO governance) and Hyperledger Besu for private compliance (KYC, ISO 13485, FDA certs). 20 smart contracts,
+              6 AI agents, 5-tier certification from hobbyist FDM through FDA-registered medical grade.
+            </p>
+            <div class="product-stats">
+              <div class="stat">
+                <span class="stat-value">20</span>
+                <span class="stat-label">Smart contracts</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">6</span>
+                <span class="stat-label">AI agents</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">403</span>
+                <span class="stat-label">Passing tests</span>
+              </div>
+            </div>
+            <div class="product-tech">
+              <span class="tech-tag">Solidity</span>
+              <span class="tech-tag">Polygon</span>
+              <span class="tech-tag">Arbitrum</span>
+              <span class="tech-tag">Hyperledger Besu</span>
+              <span class="tech-tag">Claude AI</span>
+              <span class="tech-tag">PDAO Token</span>
+            </div>
+            <a href="https://ghostfactory.network" class="button button--outline" target="_blank" rel="noopener">Ghost Factory Network</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Results / Case Study ─── -->
+    <section id="results" class="section">
+      <div class="container">
+        <p class="eyebrow">Proven Results</p>
+        <h2>Technology Consulting That Moves the Needle.</h2>
+
+        <div class="case-study-card">
+          <div class="case-study-content">
+            <div class="case-study-label">Case Study</div>
+            <h3>Whatnot Live Auction Sales Channel</h3>
+            <p>
+              Built a high-performing live auction sales channel from the ground up for a client on Whatnot.
+              Handled everything from technical setup and catalog optimization to stream strategy and
+              operational workflows. The result: a channel consistently producing
+              <strong>$1,000 to $2,000 per hour</strong> per live auction.
+            </p>
+            <p>
+              This wasn't a one-off spike. It's a repeatable system that turns live commerce into a
+              reliable revenue engine. Technology consulting with measurable, recurring results.
+            </p>
+            <div class="case-study-stats">
+              <div class="stat stat--highlight">
+                <span class="stat-value">$1K-$2K</span>
+                <span class="stat-label">Revenue per hour</span>
+              </div>
+              <div class="stat stat--highlight">
+                <span class="stat-value">Live</span>
+                <span class="stat-label">Auction format</span>
+              </div>
+              <div class="stat stat--highlight">
+                <span class="stat-value">Repeatable</span>
+                <span class="stat-label">System, not luck</span>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section" id="about">
-        <div class="container about-grid">
-          <figure class="about-image-frame">
-            <img src="About_us.jpg" alt="Nueva Tech field engineering and drone operations" />
-          </figure>
-          <div>
-            <h2>Pushing the Boundaries of Applied Technology.</h2>
+    <!-- ─── Services ─── -->
+    <section id="services" class="section">
+      <div class="container">
+        <h2>Specialized Technical Expertise.</h2>
+        <p class="section-intro">
+          Comprehensive consulting, troubleshooting, and custom development across software and hardware.
+        </p>
+        <div class="services-grid">
+          <article class="card">
+            <img src="https://nuevatech.cloud/server.jpg" alt="Enterprise networking and server infrastructure" class="card-image" />
+            <h3>Advanced Hardware &amp; Robotics</h3>
             <p>
-              Technology isn't just about maintaining the status quo; it's about
-              building what hasn't existed before. Founded by Jeremy, Nueva Tech
-              is driven by a mission to solve complex, high-stakes technical
-              challenges.
+              Custom design, configuration, and troubleshooting of high-performance systems,
+              including complex flight controllers and unmanned aerial vehicles (UAVs).
             </p>
+          </article>
+          <article class="card">
+            <img src="https://nuevatech.cloud/dees%20hands.jpg" alt="Software engineering and algorithm development workstation" class="card-image" />
+            <h3>Algorithmic Programming</h3>
             <p>
-              From architecting hardened security systems and exploring quantum
-              computing applications to deploying advanced hardware, we thrive on
-              the frontier of innovation. Whether tackling deep-level
-              programming or providing hands-on field expertise, we bring a
-              rigorous, analytical approach to every project.
+              Developing specialized software solutions, including classical algorithms,
+              automated data models, and trading bots.
             </p>
-          </div>
-          <aside class="founder-card" aria-label="Founder profile">
-            <img src="profile_picture.png" alt="Jeremy, founder of Nueva Tech" />
-            <h3>Jeremy</h3>
-            <p>Founder &amp; Lead Engineer</p>
-          </aside>
+          </article>
+          <article class="card">
+            <img src="https://nuevatech.cloud/Frelance_cloud.png" alt="Cloud dashboard and distributed analytics interface" class="card-image" />
+            <h3>Hardened Cybersecurity</h3>
+            <p>
+              Architecting highly secure, difficult-to-compromise infrastructure, including
+              analog-to-digital configurations and air-gapped environments.
+            </p>
+          </article>
+          <article class="card">
+            <img src="https://nuevatech.cloud/About_us.jpg" alt="Field diagnostics and on-site technical deployment" class="card-image" />
+            <h3>Expert Field Troubleshooting</h3>
+            <p>
+              On-site and remote technical support, resolving intricate issues across
+              home labs, cloud deployments, and enterprise hardware.
+            </p>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section" id="services">
-        <div class="container">
-          <h2>Specialized Technical Expertise.</h2>
-          <p class="section-intro">
-            We offer comprehensive consulting, troubleshooting, and custom
-            development across both software and hardware domains.
-          </p>
-          <div class="services-grid">
-            <article class="card">
-              <img class="card-image" src="server.jpg" alt="Enterprise networking and server infrastructure" />
-              <h3>Advanced Hardware &amp; Robotics</h3>
-              <p>
-                Custom design, configuration, and troubleshooting of
-                high-performance systems, including complex flight controllers
-                and unmanned aerial vehicles (UAVs).
-              </p>
-            </article>
-            <article class="card">
-              <img class="card-image" src="dees hands.jpg" alt="Software engineering and algorithm development workstation" />
-              <h3>Algorithmic Programming</h3>
-              <p>
-                Developing specialized software solutions, including classical
-                algorithms, automated data models, and trading bots.
-              </p>
-            </article>
-            <article class="card">
-              <img class="card-image" src="Frelance_cloud.png" alt="Cloud dashboard and distributed analytics interface" />
-              <h3>Hardened Cybersecurity</h3>
-              <p>
-                Architecting highly secure, difficult-to-compromise
-                infrastructure, including analog-to-digital configurations and
-                air-gapped environments.
-              </p>
-            </article>
-            <article class="card">
-              <img class="card-image" src="About_us.jpg" alt="Field diagnostics and on-site technical deployment" />
-              <h3>Expert Field Troubleshooting</h3>
-              <p>
-                On-site and remote technical support, resolving intricate issues
-                across home labs, cloud deployments, and enterprise hardware.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" id="contact">
-        <div class="container contact-grid">
+    <!-- ─── Contact ─── -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="contact-grid">
           <div>
             <h2>Ready to Build Something New?</h2>
             <p>
-              Whether you need immediate troubleshooting for a critical system
-              or are looking to partner on a groundbreaking technological
-              project, Nueva Tech has the expertise to execute.
+              Whether you need a product built from scratch, immediate troubleshooting for
+              a critical system, or a partner to turn an idea into a revenue-generating platform,
+              Nueva Tech has the expertise to execute.
             </p>
           </div>
-          <form class="contact-form" action="mailto:hello@nuevatech.io" method="post" enctype="text/plain">
+          <form class="contact-form" action="https://formspree.io/f/placeholder" method="POST">
             <label for="name">Name</label>
-            <input id="name" name="name" type="text" required />
-
+            <input type="text" id="name" name="name" required />
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" required />
-
-            <label for="details">Project/Issue Description</label>
-            <textarea id="details" name="details" rows="5" required></textarea>
-
+            <input type="email" id="email" name="email" required />
+            <label for="message">Project/Issue Description</label>
+            <textarea id="message" name="message" rows="5"></textarea>
             <button type="submit" class="button">Request a Consultation</button>
           </form>
         </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container">
-        <p>© <span id="year"></span> Nueva Tech. All rights reserved.</p>
       </div>
-    </footer>
+    </section>
+  </main>
 
-    <script src="script.js"></script>
-  </body>
+  <!-- ─── Footer ─── -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Nueva Tech. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
