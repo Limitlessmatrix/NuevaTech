@@ -254,11 +254,12 @@
               Nueva Tech has the expertise to execute.
             </p>
           </div>
-          <form class="contact-form" action="https://formsubmit.co/jeremyra@nuevatech.cloud" method="POST">
-            <input type="hidden" name="_subject" value="New consultation request from nuevatech.cloud" />
-            <input type="hidden" name="_next" value="https://nuevatech.cloud/?sent=1#contact" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="262bc2e3-807b-4429-93f2-7d78aa3b07c6" />
+            <input type="hidden" name="subject" value="New consultation request from nuevatech.cloud" />
+            <input type="hidden" name="from_name" value="nuevatech.cloud" />
+            <input type="hidden" name="redirect" value="https://nuevatech.cloud/?sent=1#contact" />
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required />
             <label for="email">Email</label>
