@@ -504,3 +504,9 @@ textarea:focus {
   color: var(--text-muted);
   border-color: rgb(148 163 184 / 30%);
 }
+
+.form-sent {
+  margin-top: 0.8rem;
+  color: var(--accent-green);
+  font-weight: 600;
+}

@@ -29,3 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
 const style = document.createElement('style');
 style.textContent = '.section.visible { opacity: 1 !important; transform: translateY(0) !important; }';
 document.head.appendChild(style);
+
+// Contact form confirmation after FormSubmit redirect
+if (new URLSearchParams(window.location.search).get('sent') === '1') {
+  document.getElementById('form-sent').hidden = false;
+}

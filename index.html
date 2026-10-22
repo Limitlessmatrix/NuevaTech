@@ -254,7 +254,11 @@
               Nueva Tech has the expertise to execute.
             </p>
           </div>
-          <form class="contact-form" action="https://formspree.io/f/placeholder" method="POST">
+          <form class="contact-form" action="https://formsubmit.co/jmatrix@801labs.org" method="POST">
+            <input type="hidden" name="_subject" value="New consultation request from nuevatech.cloud" />
+            <input type="hidden" name="_next" value="https://nuevatech.cloud/?sent=1#contact" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required />
             <label for="email">Email</label>
@@ -262,6 +266,7 @@
             <label for="message">Project/Issue Description</label>
             <textarea id="message" name="message" rows="5"></textarea>
             <button type="submit" class="button">Request a Consultation</button>
+            <p id="form-sent" class="form-sent" hidden>Thanks, your message was sent. We'll be in touch soon.</p>
           </form>
         </div>
       </div>
