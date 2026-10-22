@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nueva Tech builds products and delivers expert technical consulting across software, hardware, cybersecurity, and field operations. Home of GrantWritePro, Ghost Factory, and more." />
+  <meta name="description" content="Nueva Tech builds products and delivers expert technical consulting across software, hardware, cybersecurity, and field operations. From AI SaaS platforms to decentralized systems." />
   <title>Nueva Tech | Products & Technical Consulting</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,7 +20,7 @@
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#about">About</a>
-        <a href="#products">Products</a>
+        <a href="#products">Projects</a>
         <a href="#results">Results</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
@@ -36,7 +36,7 @@
           <p class="eyebrow">Products + Technical Consulting</p>
           <h1>We Build Products.<br/>We Solve Problems.</h1>
           <h2>Nueva Tech is a product studio and technical consultancy. We build SaaS platforms, decentralized systems, and high-performance infrastructure from the ground up.</h2>
-          <a href="#products" class="button">See What We're Building</a>
+          <a href="#products" class="button">See Our Work</a>
         </div>
         <div class="hero-visual">
           <img src="https://nuevatech.cloud/server.jpg" alt="Advanced server and networking equipment" />
@@ -77,16 +77,17 @@
     <!-- ─── Products ─── -->
     <section id="products" class="section">
       <div class="container">
-        <p class="eyebrow">What We're Building</p>
-        <h2>Products by Nueva Tech.</h2>
+        <p class="eyebrow">Past Projects</p>
+        <h2>What We've Built.</h2>
         <p class="section-intro">
-          We don't just consult. We build and ship our own products. These are live platforms solving real problems.
+          We don't just consult. We design, build, and ship full platforms end to end. These are retired projects
+          that show the range of work we take on.
         </p>
 
         <div class="products-grid">
           <!-- Grant Write Pro -->
-          <div class="product-card product-card--featured">
-            <div class="product-badge">Live</div>
+          <div class="product-card">
+            <div class="product-badge product-badge--past">Retired</div>
             <div class="product-icon">
               <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="8" y="4" width="32" height="40" rx="4" stroke="currentColor" stroke-width="2.5"/>
@@ -97,26 +98,12 @@
               </svg>
             </div>
             <h3>GrantWritePro</h3>
-            <p class="product-tagline">AI-powered grant writing that wins.</p>
+            <p class="product-tagline">AI-powered grant writing platform.</p>
             <p>
-              Write competitive grant proposals in minutes, not weeks. Multi-model AI (Claude, GPT-4o, Gemini, Ollama)
-              grounded in your organization's own documents via RAG. Search 50,000+ grants, generate proposals with
-              built-in success scoring, and export to DOCX or PDF.
+              A full SaaS platform for drafting grant proposals. Multi-model AI (Claude, GPT-4o, Gemini, Ollama)
+              grounded in an organization's own documents via RAG, grant search, proposal success scoring,
+              and DOCX/PDF export.
             </p>
-            <div class="product-stats">
-              <div class="stat">
-                <span class="stat-value">50K+</span>
-                <span class="stat-label">Grants searchable</span>
-              </div>
-              <div class="stat">
-                <span class="stat-value">&lt; 5 min</span>
-                <span class="stat-label">Avg draft time</span>
-              </div>
-              <div class="stat">
-                <span class="stat-value">87/100</span>
-                <span class="stat-label">Avg success score</span>
-              </div>
-            </div>
             <div class="product-tech">
               <span class="tech-tag">FastAPI</span>
               <span class="tech-tag">Next.js</span>
@@ -125,12 +112,11 @@
               <span class="tech-tag">Qdrant</span>
               <span class="tech-tag">Ollama</span>
             </div>
-            <a href="https://grantwritepro.cloud" class="button" target="_blank" rel="noopener">Visit GrantWritePro</a>
           </div>
 
-          <!-- Ghost Factory -->
+          <!-- 3D printing marketplace -->
           <div class="product-card">
-            <div class="product-badge product-badge--dev">In Development</div>
+            <div class="product-badge product-badge--past">Prototype</div>
             <div class="product-icon">
               <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M24 4L4 16v16l20 12 20-12V16L24 4z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
@@ -139,13 +125,13 @@
                 <circle cx="24" cy="22" r="4" stroke="var(--accent)" stroke-width="2"/>
               </svg>
             </div>
-            <h3>Ghost Factory</h3>
-            <p class="product-tagline">Decentralized 3D printing marketplace.</p>
+            <h3>Decentralized Manufacturing Marketplace</h3>
+            <p class="product-tagline">Smart contract marketplace for 3D printing.</p>
             <p>
-              A smart contract-governed marketplace connecting designers with certified 3D print shops worldwide.
-              Dual-chain architecture: Polygon/Arbitrum for public operations (job postings, payments, credentials,
-              DAO governance) and Hyperledger Besu for private compliance (KYC, ISO 13485, FDA certs). 20 smart contracts,
-              6 AI agents, 5-tier certification from hobbyist FDM through FDA-registered medical grade.
+              Engineered the smart contract and agent layer for a marketplace connecting designers with certified
+              3D print shops. Dual-chain design with public operations (job postings, payments, credentials, DAO
+              governance) and a private compliance chain (KYC, ISO 13485, FDA certs), plus a 5-tier certification
+              model from hobbyist FDM through medical grade.
             </p>
             <div class="product-stats">
               <div class="stat">
@@ -167,9 +153,7 @@
               <span class="tech-tag">Arbitrum</span>
               <span class="tech-tag">Hyperledger Besu</span>
               <span class="tech-tag">Claude AI</span>
-              <span class="tech-tag">PDAO Token</span>
-            </div>
-            <a href="https://ghostfactory.network" class="button button--outline" target="_blank" rel="noopener">Ghost Factory Network</a>
+                          </div>
           </div>
         </div>
       </div>

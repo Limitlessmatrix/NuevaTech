@@ -498,3 +498,9 @@ textarea:focus {
     font-size: 0.8rem;
   }
 }
+
+.product-badge--past {
+  background: rgb(148 163 184 / 15%);
+  color: var(--text-muted);
+  border-color: rgb(148 163 184 / 30%);
+}
