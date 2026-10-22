@@ -34,3 +34,11 @@ document.head.appendChild(style);
 if (new URLSearchParams(window.location.search).get('sent') === '1') {
   document.getElementById('form-sent').hidden = false;
 }
+
+// Put the visitor's name in the email sender and subject
+const contactForm = document.querySelector('.contact-form');
+contactForm.addEventListener('submit', () => {
+  const name = contactForm.elements.name.value.trim();
+  contactForm.elements.subject.value = `Website inquiry from ${name}`;
+  contactForm.elements.from_name.value = `${name} via nuevatech.cloud`;
+});
