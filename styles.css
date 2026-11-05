@@ -510,3 +510,40 @@ textarea:focus {
   color: var(--accent-green);
   font-weight: 600;
 }
+
+/* ─── Blog ─── */
+.post-meta { color: var(--text-muted); font-size: 0.95rem; margin: 0.4rem 0 0; }
+.post { max-width: 72ch; }
+.post h2 { font-size: 1.6rem; margin: 2.6rem 0 0.8rem; max-width: none; }
+.post p, .post li { color: var(--text-muted); line-height: 1.75; }
+.post p { margin: 0 0 1.1rem; }
+.post ul { padding-left: 1.3rem; }
+.post li { margin-bottom: 0.4rem; }
+.post strong { color: var(--text); }
+.post blockquote {
+  margin: 1.4rem 0;
+  padding: 0.9rem 1.2rem;
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--text);
+  font-style: italic;
+}
+.post table { width: 100%; border-collapse: collapse; margin: 1.2rem 0 1.6rem; font-size: 0.95rem; }
+.post th, .post td {
+  text-align: left;
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid rgb(80 110 150 / 25%);
+  color: var(--text-muted);
+}
+.post th { color: var(--text); font-weight: 600; }
+.post td:last-child, .post th:last-child { text-align: right; white-space: nowrap; }
+.post-stats { flex-wrap: wrap; margin: 1.5rem 0 2rem; padding-top: 0; border-top: 0; }
+.post-stats .stat { min-width: 8rem; }
+.post-list { display: grid; gap: 1.2rem; max-width: 72ch; }
+.post-card { padding: 1.5rem; }
+.post-card h3 { margin: 0.3rem 0 0.5rem; font-size: 1.3rem; }
+.post-card p { color: var(--text-muted); margin: 0; }
+.post-card a { color: var(--text); text-decoration: none; }
+.post-card a:hover { color: var(--accent); }
+.site-nav a.current { color: var(--accent); }

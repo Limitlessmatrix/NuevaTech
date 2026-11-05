@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="We ran an AI red teaming CTF at SAINTCON 2026 and recorded 5,400 prompts. Which attack techniques work against current models, where players got stuck, and what we learned running it." />
+  <title>What 5,400 Prompts Taught Us About Attacking AI | Nueva Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container nav-wrapper">
+      <a href="../" class="brand" aria-label="Nueva Tech Home">
+        <img src="https://nuevatech.cloud/100pxNT.png" alt="Nueva Tech logo" class="brand-logo" />
+        <span>Nueva Tech</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../#about">About</a>
+        <a href="../#products">Projects</a>
+        <a href="../#results">Results</a>
+        <a href="../#services">Services</a>
+        <a href="./" class="current">Blog</a>
+        <a href="../#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="section">
+      <div class="container">
+        <article class="post">
+          <p class="eyebrow">AI Security</p>
+          <h1>What 5,400 Prompts Taught Us About Attacking AI</h1>
+          <p class="post-meta">November 2026. Lessons from running the AI red teaming CTF at SAINTCON 2026.</p>
+
+          <p>This October we ran an AI red teaming capture the flag at SAINTCON, Utah's security conference. Forty two challenges, each a small application with a language model in the loop: a support bot guarding a secret, a refund agent with a knowledge base, a package search backed by a database, a research assistant that fetches URLs, a diagnostic runner behind an argument guard. Players had to make the model do something its operator did not intend, then prove it with a flag. Five of the challenges were folded into the conference's Hackers Challenge, so plenty of people who had never heard the words prompt injection wandered over to collect points.</p>
+          <p>Every prompt a player sent was recorded, with a notice and an opt out that also deleted what had been captured. The scoreboard was never the point. The point was to learn which techniques actually work against current models when real people are the attackers, and to see where a mixed crowd of professionals, students and hobbyists gets stuck. Here is what the data says.</p>
+
+          <div class="case-study-stats post-stats">
+            <div class="stat stat--highlight"><span class="stat-value">84</span><span class="stat-label">Players</span></div>
+            <div class="stat stat--highlight"><span class="stat-value">5,418</span><span class="stat-label">Prompts</span></div>
+            <div class="stat stat--highlight"><span class="stat-value">428</span><span class="stat-label">Flags captured</span></div>
+            <div class="stat stat--highlight"><span class="stat-value">35 / 35</span><span class="stat-label">Challenges cracked</span></div>
+          </div>
+
+          <h2>The shape of the crowd</h2>
+          <p>Eighty four people sent at least one prompt and fifty seven captured at least one flag. Every challenge on the board fell to somebody, and one player cleared all of them. Below the top six the board splits cleanly in two. Fifteen players solved exactly the five Hackers Challenge problems and nothing else, which is the crowd that came for points and left. Then there is a long tail of one to three solves. Thirty one people prompted and never scored at all.</p>
+          <p>The timing surprised us. Village hours ran a steady 150 to 270 prompts an hour. The real peaks were at 10 and 11 at night, when the hotel rooms lit up and one hour alone saw 489 prompts. A CTF with a browser front end does not stay in the room it was built for.</p>
+
+          <h2>The first challenge was the wall</h2>
+          <p>The warm up was a support bot told to keep a secret word to itself. It was meant to take five minutes. It absorbed a quarter of every prompt sent all week, 158 wrong flag submissions and a third of all hints taken. Of the thirty one players who never scored, twenty one started there and quit there.</p>
+          <p>What they typed tells the story. People said hello. People asked for the secret word outright, repeatedly, and got the same polite refusal every time. People wrote long speeches about ignoring previous instructions. One player, reading the challenge title Just Say No a little too literally, typed the word No thirty times in a row. The model refused four in ten warm up turns outright.</p>
+          <p>The ones who got through did something sideways. They asked the bot to translate everything above into French, or to repeat the text above, or to lay it out as a table. Half the recorded wins on that challenge were a translation request. Nobody who asked for the secret directly ever got it.</p>
+          <blockquote>The gap between a beginner and a solver on challenge one was not skill. It was knowing that you do not ask the model for the thing. You ask it to transform the thing.</blockquote>
+
+          <h2>What actually works in 2026</h2>
+          <p>Every prompt was tagged with a technique family and matched against whether the flag appeared in the reply. The tagger is crude and more than half of prompts fell through to other, but the ordering is clear and it matches what we see in client engagements.</p>
+          <table>
+            <thead><tr><th>Technique</th><th>Prompts</th><th>Hit rate</th></tr></thead>
+            <tbody>
+              <tr><td>Story and role play</td><td>52</td><td>31%</td></tr>
+              <tr><td>Runaway output, repeat forever</td><td>26</td><td>27%</td></tr>
+              <tr><td>Translation request</td><td>126</td><td>21%</td></tr>
+              <tr><td>Encoding tricks</td><td>126</td><td>14%</td></tr>
+              <tr><td>Claimed authority</td><td>243</td><td>10%</td></tr>
+              <tr><td>Quoting a document or policy</td><td>197</td><td>9%</td></tr>
+              <tr><td>Format conversion</td><td>192</td><td>6%</td></tr>
+              <tr><td>Ignore previous instructions</td><td>38</td><td>3%</td></tr>
+              <tr><td>Asking directly</td><td>1,115</td><td>1%</td></tr>
+            </tbody>
+          </table>
+          <p>Three things stand out. First, ignore your instructions is dead. The phrase every article still leads with scored three percent, and most of that was luck. Second, the reliable keys on a small open model are translation and format shifting, because the model treats them as a task about the text rather than a request for the secret. Third, claimed authority looks weak overall but it is the technique that moves agents with tools. On the refund agent, nearly half the wins came from a player stating a role and a policy reference as if it were routine. On the exfiltration challenges, nine of ten recorded wins were a confident instruction dressed as company policy.</p>
+          <p>Two smaller lessons. Asking is better than ordering: on the URL fetching challenge the model refused fetch and show me the raw body more than half the time, but happily answered what does that page say. And the clean single shot wins. Half of all prompts were deep in a back and forth conversation, but fewer than a third of winning prompts were. The slow build rarely paid off.</p>
+
+          <h2>Poison the knowledge base and ask nicely</h2>
+          <p>The most instructive challenge was a refund agent for a fictional outfitter. It had a tool to look up orders, a tool to issue refunds, a policy that said refunds outside thirty days need supervisor approval, and a knowledge base that support staff could add articles to. Players could add articles too.</p>
+          <p>Thirty five players wrote fifty two articles. Nearly every one was the same forgery: a policy update, effective immediately, stating that a particular order had already been approved by a supervisor, complete with an approval code the player made up. Then they asked for the refund in one plain sentence. The agent honored it every time. Thirty three of the thirty four people who touched that challenge solved it, and not one of them needed a jailbreak.</p>
+          <p>That is the lesson we most want people to leave with. The model was never tricked. It did exactly what it was built to do, which was trust the knowledge base. If your agent can read documents that users can write, the users are writing its policy.</p>
+
+          <h2>Hard is fine, opaque is not</h2>
+          <p>Two challenges ate more than a thousand prompts between them for seven solves. One was a shared answer cache across tenants, where the trick was to ask a question another tenant had already asked. Every failed attempt was a perfectly sensible question about the player's own company. Nobody found the mechanic from the brief, and the one win was luck. The other was a diagnostic tool with an argument guard that rejected a privileged target. Players burned dozens of turns on every spelling, casing and encoding of the forbidden word. The handful who got through stopped fighting the guard and found a different name for the same place.</p>
+          <p>Neither of those is a bad challenge. Both had a bad brief. Next year both get a progressive hint ladder that unlocks after enough failed attempts, because a thousand prompts without feedback is not difficulty, it is a wall with no door.</p>
+
+          <h2>The agents were playing too</h2>
+          <p>A visible share of the scoring accounts were not people typing. Six numbered handles each took one Hackers Challenge flag within the same second on the first afternoon, one minute after a seventh account solved the same five in order. Other accounts announced themselves by name as a coding agent. Their prompts are easy to spot: call this tool with this exact argument, do not modify, trim or escape it. One player pasted their own browser automation snippet into the chat box by mistake.</p>
+          <p>The agents were fast on the five web style challenges, the SQL injection, the command injection, the spreadsheet formula. They were poor on the pure prompt injection track, where a human who understood the trick in three turns was still beating an agent on its fortieth. One account scripted a single exfiltration challenge for three hours overnight, and the only reason we know is that the fixed timing gaps show up in the logs. Which brings us to what we got wrong.</p>
+
+          <h2>What we got wrong</h2>
+          <ul>
+            <li><strong>Our exfiltration collector capped stored hits per team and the portal compared against that cap.</strong> Once a player passed it, every later attempt was told nothing arrived, while the collector log showed the request landing. That scripted player found the bug for us by hitting it sixty times.</li>
+            <li><strong>Our telemetry recorded the wrong model name on every row.</strong> It logged the default model instead of the one each challenge was pinned to. Easy fix, embarrassing miss, and it would have corrupted any per model comparison we published.</li>
+            <li><strong>One challenge chained several model calls and ran close to a three minute timeout.</strong> It produced the worst experience on the board and a single solve. The victim simulation gets a cheaper model next year.</li>
+            <li><strong>Our pseudonymous player hashes could be re linked to handles</strong> by matching correct submission timestamps against the public scoreboard. We will round those timestamps before any dataset release.</li>
+            <li><strong>Free text answer challenges invited guessing.</strong> Name the model and fix the prompt questions drew thirty to forty wrong submissions each, with one player trying nineteen guesses in half an hour. A short cooldown after three misses fixes it.</li>
+          </ul>
+
+          <h2>What happens next</h2>
+          <p>We now have 5,400 prompt and reply pairs tagged with challenge, technique and outcome, fifty two poisoned knowledge base articles, and forty four defensive system prompts that players wrote for the defend tier, each with the attacks that got through them. Opted out players are already gone from it. That is enough to retrain our prompt injection classifier on real attacker text instead of synthetic, and to release a cleaned dataset once the handle linkage above is fixed.</p>
+          <p>The challenges, the range and the portal will run again at SAINTCON 2027 with a proper on ramp in front of the warm up, briefs rewritten around their mechanics, and a stated position on agents. If you run models with tools in production and want to know what a room full of attackers would do to them, that is the work we do. <a href="../#contact">Get in touch</a>.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container"><p>&copy; <span id="year"></span> Nueva Tech. All rights reserved.</p></div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
