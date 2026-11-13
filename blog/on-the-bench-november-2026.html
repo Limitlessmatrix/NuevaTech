@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A mid flight report on the experiments running at Nueva Tech this month: measuring refusal removal in open models against public tools, benchmarking AI pentest harnesses, fine tuning for reverse engineering, and generating game assets." />
+  <title>On the Bench: What We Are Running in November 2026 | Nueva Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container nav-wrapper">
+      <a href="../" class="brand" aria-label="Nueva Tech Home">
+        <img src="https://nuevatech.cloud/100pxNT.png" alt="Nueva Tech logo" class="brand-logo" />
+        <span>Nueva Tech</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../#about">About</a>
+        <a href="../#products">Projects</a>
+        <a href="../#results">Results</a>
+        <a href="../#services">Services</a>
+        <a href="./" class="current">Blog</a>
+        <a href="../#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="section">
+      <div class="container">
+        <article class="post">
+          <p class="eyebrow">Lab Notes</p>
+          <h1>On the Bench: What We Are Running in November 2026</h1>
+          <p class="post-meta">November 13, 2026. A mid flight report. Some of these numbers will move.</p>
+
+          <p>Most write ups appear after the work is finished and the awkward parts have been sanded off. This one is a snapshot of the bench as it stands today: four lines of work, what each has measured so far, what is still in the queue, and where we were wrong along the way. Everything here runs on open weight models, self hosted, on a single desktop GPU and on shared research compute.</p>
+
+          <div class="case-study-stats post-stats">
+            <div class="stat stat--highlight"><span class="stat-value">95% &rarr; 4%</span><span class="stat-label">Refusals, Qwen3-8B</span></div>
+            <div class="stat stat--highlight"><span class="stat-value">0.014</span><span class="stat-label">KL damage at that point</span></div>
+            <div class="stat stat--highlight"><span class="stat-value">58x</span><span class="stat-label">Fewer tokens per pentest run</span></div>
+            <div class="stat stat--highlight"><span class="stat-value">15 / 16</span><span class="stat-label">Generated props passing checks</span></div>
+          </div>
+
+          <h2>1. Removing refusals without breaking the model</h2>
+          <p>Red teams need models that will actually discuss an exploit. The common way to get one is abliteration: find the direction inside the network that carries refusal and edit it out of the weights. The catch is that every such edit also changes things you did not mean to change. So the question for this study is narrow. Can our edit remove refusals from open weight models with less collateral damage than the public tools, when everyone is measured the same way on data nobody tuned against?</p>
+          <p>The protocol is fixed and written down before each run. Refusal is scored on 282 held out StrongREJECT prompts by a separate guard model, Qwen3Guard, not by matching phrases. Damage is the KL divergence from the original model on 300 ordinary held out prompts: how far the edited model's answers drift on questions that have nothing to do with refusal. Capability is MMLU, ARC and GSM8K. Comparisons are paired per prompt with a Holm correction. The contenders are our own method in several versions, Heretic 1.4.0 and OBLITERATUS 0.1.4.</p>
+          <table>
+            <thead><tr><th>Qwen3-8B, held out</th><th>Refusal</th><th>KL damage</th></tr></thead>
+            <tbody>
+              <tr><td>Original model</td><td>0.954</td><td>0</td></tr>
+              <tr><td>Ours, v2</td><td>0.135</td><td>0.0521</td></tr>
+              <tr><td>Ours, v3 (median of 3 seeds)</td><td>0.191</td><td>0.0079</td></tr>
+              <tr><td>Ours, v3.1 (median of 3 seeds)</td><td>0.043</td><td>0.0136</td></tr>
+              <tr><td>Heretic 1.4.0</td><td>0.610</td><td>0.0057</td></tr>
+              <tr><td>OBLITERATUS 0.1.4, two presets</td><td>0.72 to 0.88</td><td>0.12 to 0.24</td></tr>
+            </tbody>
+          </table>
+          <p>Heretic produces the gentlest edit on this model, and it does so by leaving six in ten refusals in place. Our v3 search gets close to the same damage with about a third of the refusals. v3.1 removes nearly all of them at roughly twice Heretic's damage, and beats our own v2 on both axes. Benchmark scores are flat for every contender except OBLITERATUS, which drops a point or two.</p>
+          <p>It is not a clean sweep. On gemma-3-12b our edit removes more refusals than Heretic (0.259 against 0.496) but costs more than three times the damage (0.091 against 0.027), and the v3 search that helped so much on Qwen bought nothing on Gemma. On Qwen3-32B we lead on damage, the refusal gap is not statistically significant, and Heretic is ahead on first token drift and on MMLU. The improvement is real and so far it is specific to one model family.</p>
+
+          <h2>Two things we got wrong</h2>
+          <p><strong>Our refusal detector was grading its own homework.</strong> The early versions of the search decided whether a reply was a refusal by looking for phrases like I cannot help with that. By that measure v3 had driven refusals to 0.000. When the guard model read the same kind of replies on held out prompts, the real figure was 0.213. The model had learned nothing new. It had simply stopped using the phrases we were looking for. Earlier figures of ours built on phrase matching were wrong, and v3.1 exists because we moved the judge inside the search loop.</p>
+          <p><strong>One run is not a result.</strong> The same search with a different random seed gave a damage figure of 0.0083 one time and 0.0243 the next. Across three seeds of v3.1, refusal came out at 0.032, 0.096 and 0.043. Every seed still beat v2, but one draw in three is noticeably worse, so we now report medians and treat a single seed as a rumor.</p>
+          <blockquote>If your success metric is a string match, the thing you are optimizing will learn to avoid the string.</blockquote>
+          <p>In the queue right now: v3.2, which starts every search from a fixed grid instead of random draws to tame that seed variance, on three seeds of Qwen3-8B and on gemma-3-12b. A 72 billion parameter run is waiting on GPU capacity. The Gemma 4 family is next after that.</p>
+
+          <h2>2. How good are AI pentest agents, really?</h2>
+          <p>We are building a proprietary AI pentest harness for bug bounty work. It is private for now, so it appears here without a name. To find out where it stands, we put it in an isolated lab next to three public agents and ran all of them on the same public set of web exploitation tasks: same model, a thirty minute cap, and a fresh random flag on every run so that nothing can be memorized.</p>
+          <table>
+            <thead><tr><th>Harness, deepseek-v4-flash</th><th>Solved</th><th>Median time</th><th>Tokens per run</th></tr></thead>
+            <tbody>
+              <tr><td>Strix</td><td>16 / 21</td><td>7 min</td><td>8.7 M</td></tr>
+              <tr><td>Our proprietary harness</td><td>10 / 20</td><td>3 min</td><td>0.15 M</td></tr>
+              <tr><td>PentAGI</td><td>5 / 24</td><td></td><td></td></tr>
+              <tr><td>Hermes</td><td>0 / 9</td><td></td><td></td></tr>
+            </tbody>
+          </table>
+          <p>The plain reading is that Strix solves more. On the seventeen tasks both attempted it took sixteen and ours took ten. What ours has is cost: it finishes in less than half the time on about one fifty eighth of the tokens. With a second model, glm-5, the two were nearly level on the twelve shared tasks (six against five) with the same cost gap. For bounty work, where most attempts earn nothing, cost per attempt matters nearly as much as solve rate, but it does not replace it.</p>
+          <p>After a round of fixes we reran the fourteen tasks ours had failed and it solved seven of them, including one that no harness in the lab had solved before. Those are second attempts and do not get added to the first table. Several tasks remain unsolved by everything we have tried. One result we care about more than the scoreboard: across every run, no harness has claimed a flag that was wrong.</p>
+          <p>Running now: our harness has just been given a local index of about 297,000 CVE records and a static analysis pass, and the next benchmark round will show whether either one moves the failing tasks. Until that is measured, they are features, not results. Every third party harness in the lab was pinned, hash checked and audited before it ran, and the lab can only reach the internet through an allowlist.</p>
+
+          <h2>3. Teaching a small model to read binaries</h2>
+          <p>We have an 8 billion parameter model fine tuned for bug bounty triage and report writing. The next skill we want is reverse engineering, and the obvious shortcut is to stack a second adapter on the first. Before committing more GPU time to that, we ran a two by two study: the reverse engineering adapter on the stock model and on our triage model, each scored on both jobs.</p>
+          <p>The adapter did what it was trained for. Decompilation edit similarity rose by 0.10. It also took something away. Function naming F1 fell by 0.12, and when stacked on the triage model, accuracy at spotting false positive reports fell from 0.686 to 0.611. Which base model it sat on barely mattered. And the strongest reverse engineering model with no training at all was an off the shelf code model, Qwen2.5-Coder.</p>
+          <p>So the cheap plan, one model that does everything, costs triage accuracy that we care about. The open decision is between separate adapters swapped per task and a different base. The next round of training data will come from the pentest harness's own recorded runs.</p>
+
+          <h2>4. Game assets from a pipeline</h2>
+          <p>The lighter side of the bench is a pipeline that turns generated 3D models into game ready props, ending in a validation step that fails anything outside budget. The latest batch was sixteen props. Fifteen passed validation on both generation paths. The holdout is a bush that came back at 8,947 triangles against a budget of 3,000, which is about what a bush deserves. The whole batch also exports as printable STL files.</p>
+          <p>Still open: automatic rigging for characters, and a style adapter so that a set of props looks like it belongs to one game.</p>
+
+          <h2>What the plumbing taught us</h2>
+          <p>Half of any experiment is logistics, and three fixes this month were worth more than any method change.</p>
+          <ul>
+            <li><strong>Measure the storage.</strong> The shared file system was reading at 1 to 10 MB per second while a fresh download from the model hub ran at 234. Jobs now install their environment from hashed lock files and fetch base models onto local disk, verified by hash.</li>
+            <li><strong>Ask for what you use.</strong> Our GPU jobs were requesting four to eight times the CPU and twenty times the memory they touched. Measured use was about one core and three gigabytes. Right sized jobs fit onto busy nodes where the oversized ones sat pending.</li>
+            <li><strong>Keep a ledger.</strong> Every method change, every infrastructure change that could move a number and every known weakness goes into one file the day it happens. That ledger is why we could say exactly which earlier figures were wrong.</li>
+          </ul>
+
+          <h2>What happens next</h2>
+          <p>The v3.2 results will say whether the seed variance is fixed or merely moved. The pentest harness gets its benchmark round with the new tools. The reverse engineering fine tune waits on a choice of base. We will post the outcomes here, including the ones that go the wrong way.</p>
+          <p>If you run language models in production and want to know how they hold up against people who are trying to break them, or you want numbers on an agent before you trust it with real targets, that is the work we do. <a href="../#contact">Get in touch</a>.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container"><p>&copy; <span id="year"></span> Nueva Tech. All rights reserved.</p></div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
