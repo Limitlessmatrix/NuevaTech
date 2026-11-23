@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="What we learned from a controlled study of refusal removal in seven open weight models: what worked, what did not, and why. Paper, code, data and models are open." />
+  <title>Removing Refusals With Less Damage: What Worked, What Did Not, and Why | Nueva Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Removing Refusals With Less Damage: What Worked, What Did Not, and Why",
+    "datePublished": "2026-11-22",
+    "author": {"@type": "Organization", "name": "Nueva Tech", "url": "https://nuevatech.cloud"},
+    "about": ["abliteration", "refusal direction", "open weight language models", "model editing", "AI red teaming"]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container nav-wrapper">
+      <a href="../" class="brand" aria-label="Nueva Tech Home">
+        <img src="https://nuevatech.cloud/100pxNT.png" alt="Nueva Tech logo" class="brand-logo" />
+        <span>Nueva Tech</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="../#about">About</a>
+        <a href="../#products">Projects</a>
+        <a href="../#results">Results</a>
+        <a href="../#services">Services</a>
+        <a href="./" class="current">Blog</a>
+        <a href="../#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="section">
+      <div class="container">
+        <article class="post">
+          <p class="eyebrow">Research</p>
+          <h1>Removing Refusals With Less Damage: What Worked, What Did Not, and Why</h1>
+          <p class="post-meta">November 22, 2026. The full paper, the code, every number as data, and four edited models are open. Links at the end.</p>
+
+          <p>Open weight models ship with refusal training. For red teaming and security research that gets in the way: you want a model on your own hardware that will talk through an attack. The cheapest way to get one is abliteration. You find the direction inside the network that separates harmful requests from harmless ones and edit it out of the weights. No retraining needed.</p>
+          <p>Every edit costs something, and most published results only count what disappeared. So we ran a controlled study across seven models. The question was narrow: can a searched edit remove more refusals than the public tools while changing the model less, when everyone is measured the same way on prompts no search ever saw?</p>
+
+          <div class="case-study-stats post-stats">
+            <div class="stat stat--highlight"><span class="stat-value">95% &rarr; 5%</span><span class="stat-label">Refusals, Qwen3-8B (median of 3 seeds)</span></div>
+            <div class="stat stat--highlight"><span class="stat-value">78%</span><span class="stat-label">Less damage than our first version</span></div>
+            <div class="stat stat--highlight"><span class="stat-value">93% &rarr; 10%</span><span class="stat-label">Refusals, gemma-3-27b, MMLU unchanged</span></div>
+            <div class="stat stat--highlight"><span class="stat-value">2 MB</span><span class="stat-label">The whole edit, as an adapter</span></div>
+          </div>
+
+          <h2>How we measured</h2>
+          <p>The protocol was fixed before any comparison. Refusal is scored on 282 held out StrongREJECT prompts by a separate guard model, Qwen3Guard, not by matching phrases. Damage is the KL divergence from the original model on 300 ordinary prompts: how far its answers drift on things that have nothing to do with refusal. Capability is MMLU, ARC and GSM8K. Every comparison is paired per prompt with a Holm correction. The contenders were our own edit in five versions, Heretic 1.4.0 and OBLITERATUS 0.1.4, both at their default settings.</p>
+
+          <h2>What worked</h2>
+          <p><strong>Qwen3-8B.</strong> Our current version leaves 2.5 to 5.7 percent refusals across three seeds at a KL of about 0.011, with MMLU, ARC and GSM8K unchanged. Our first version left 13.5 percent at a KL of 0.052. The search lands on the same shape every time: one direction, edited in a narrow band of layers a little past the middle of the network. Across the whole range from removing 65 percent of refusals to removing 97 percent, the damage stays between 0.007 and 0.013. Our reading is that refusal in this model is written like a single feature in a few layers, so cutting it there touches little else.</p>
+          <p><strong>gemma-3-27b.</strong> 10 percent refusals left at a KL of 0.049, with MMLU identical to the original. Heretic on the same model leaves 40 percent at a KL of 0.012.</p>
+          <p><strong>The edit is a small file.</strong> In the common case the edit is mathematically a rank one LoRA adapter. For Qwen3-8B that is 2 MB, and it reproduces the edited model exactly. Judged refusal with the adapter matched the fully edited model. You can ship the change instead of the model.</p>
+
+          <table>
+            <thead><tr><th>Held out, judged</th><th>Refusal</th><th>KL damage</th></tr></thead>
+            <tbody>
+              <tr><td>Qwen3-8B original</td><td>0.954</td><td>0</td></tr>
+              <tr><td>Ours, first version</td><td>0.135</td><td>0.052</td></tr>
+              <tr><td>Ours, current (3 seeds)</td><td>0.025 to 0.057</td><td>0.011 to 0.013</td></tr>
+              <tr><td>Heretic 1.4.0</td><td>0.610</td><td>0.006</td></tr>
+              <tr><td>OBLITERATUS 0.1.4, two presets</td><td>0.72 to 0.88</td><td>0.12 to 0.24</td></tr>
+              <tr><td>gemma-3-27b original</td><td>0.933</td><td>0</td></tr>
+              <tr><td>Ours, current</td><td>0.103</td><td>0.049</td></tr>
+              <tr><td>Heretic 1.4.0</td><td>0.397</td><td>0.012</td></tr>
+            </tbody>
+          </table>
+
+          <h2>What did not work</h2>
+          <p><strong>Heretic always changes the model least.</strong> We never beat its KL on any model. When we tuned our edit down to match its damage, we still removed more: on gemma-3-12b at equal KL we left 33 percent refusals to its 50. But on Qwen3-8B our damage stops falling at about 0.007, and Heretic sits at 0.006.</p>
+          <p><strong>gemma-3-12b has a floor.</strong> Three versions of our edit all stop at about 25 percent refusal. No setting of the search moves it; the newest version only made that point cheaper. Since the search cannot move the floor, the limit is in the edit itself or in the direction we extract. The 27B Gemma has no such floor, so it is not a Gemma family trait.</p>
+          <p><strong>Qwen3.8-27B was expensive.</strong> The edit removed refusals (12 percent left) but at the highest damage in the study and with a small MMLU drop. The search's own trade off curve had a much cheaper point we passed over by aiming too strictly. Lesson: look at the whole curve before picking.</p>
+
+          <h2>Why the tools behave the way they do</h2>
+          <p>Heretic decides when it is done using its own phrase count of refusals. By that count its Qwen3-8B build refuses 11 percent of the time. Our judge, on prompts it never saw, says 61 percent. A search that minimises damage and believes it is finished stops early, at a point that looks gentle because it removed little. On Qwen3.8-27B it removed nothing at all. OBLITERATUS at its default presets did the most damage and removed the least; its presets were not built for these models, and we did not tune them.</p>
+          <p>We also measured a run time edit on a 321 billion parameter model, GLM-5.3-Flash through Project Maya, which projects one direction out of every layer as it runs. It works: 1.8 percent refusals at its stronger setting with MMLU and ARC unchanged. But it pays a damage floor, because one direction applied everywhere hits layers where that direction carries other information. Editing a band of layers, as our search does, is the fix.</p>
+
+          <h2>The biggest lesson was about measuring</h2>
+          <ul>
+            <li><strong>Phrase counts lie.</strong> Our own search once reported zero refusals on a model the judge scored at 21 percent. Maya's default looks like 5 percent by phrases and is 24 percent judged. Models learn to refuse in words a list does not contain.</li>
+            <li><strong>One seed is an anecdote.</strong> With the same recipe, one run in three landed at three times the damage.</li>
+            <li><strong>A search grades itself too kindly.</strong> Picking the best of many noisy scores is biased. Every winner looked better inside the search than on fresh prompts.</li>
+            <li><strong>Fine tuning can put refusals back.</strong> When we fine tuned an edited model, it refused again. About 1 percent of one public training source was refusal answers, and the model learned their exact wording. Scan the data with a judge first.</li>
+          </ul>
+
+          <h2>What we are releasing, and why</h2>
+          <p>We think the measurement is the most useful part of this work, so all of it is being released: the paper, the framework under Apache 2.0, every number in machine readable form, and the edited Qwen3-8B, gemma-3-12b, gemma-3-27b and Qwen3.8-27B models with cards that state their refusal rate, their damage, and where a competitor does better. Our fine tuned security models stay private.</p>
+          <p>There is also a message here for anyone shipping open weights. On several models a single rank one edit removed most refusals at a damage level close to the measurement noise. Refusal training on its own is a thin layer of protection once the weights are public. Knowing how thin, with real numbers, is better than guessing.</p>
+
+          <h2>Read it, use it</h2>
+          <ul>
+            <li>The paper, the framework (with <code>AGENTS.md</code> and <code>llms.txt</code> written for coding agents) and every result as JSON, including the 598 paired tests, are being published next. We will link them here when they are live.</li>
+            <li><a href="https://huggingface.co/NuevaTechLLC">Our abliterated models on Hugging Face</a>: the earlier builds are there now, and the new ones with full cards follow.</li>
+          </ul>
+          <p>Compute came from the National Research Platform, which did not review or endorse this work. If you want numbers like these on your own models, or a red team that measures before it claims, <a href="../#contact">get in touch</a>.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container"><p>&copy; <span id="year"></span> Nueva Tech. All rights reserved.</p></div>
+  </footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
