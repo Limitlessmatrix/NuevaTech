@@ -102,7 +102,7 @@
           </ul>
 
           <h2>What we are releasing, and why</h2>
-          <p>We think the measurement is the most useful part of this work, so it is open: the paper, the framework under Apache 2.0 and every number in machine readable form. The edited Qwen3-8B, gemma-3-12b, gemma-3-27b and Qwen3.8-27B models follow on Hugging Face, with cards that state their refusal rate, their damage, and where a competitor does better. Our fine tuned security models stay private.</p>
+          <p>We think the measurement is the most useful part of this work, so it is open: the paper, the framework under Apache 2.0 and every number in machine readable form. So are the edited Qwen3-8B, gemma-3-12b, gemma-3-27b and Qwen3.8-27B models on Hugging Face, with cards that state their refusal rate, their damage, and where a competitor does better. Our fine tuned security models stay private.</p>
           <p>There is also a message here for anyone shipping open weights. On several models a single rank one edit removed most refusals at a damage level close to the measurement noise. Refusal training on its own is a thin layer of protection once the weights are public. Knowing how thin, with real numbers, is better than guessing.</p>
 
           <h2>Read it, use it</h2>
@@ -110,7 +110,7 @@
             <li><a href="https://github.com/Limitlessmatrix/abliteration-study/blob/main/paper/PAPER.md">The paper</a>: every table, every caveat, and the mistakes we corrected along the way.</li>
             <li><a href="https://github.com/Limitlessmatrix/abliteration-study">The framework</a>: search, edit, evaluate and export adapters. Its <code>AGENTS.md</code> and <code>llms.txt</code> are written for coding agents.</li>
             <li><a href="https://github.com/Limitlessmatrix/abliteration-study/blob/main/paper/data/results.json">All results as JSON</a> and the <a href="https://github.com/Limitlessmatrix/abliteration-study/blob/main/paper/data/paired_tests.csv">598 paired tests</a>.</li>
-            <li><a href="https://huggingface.co/NuevaTechLLC">Our abliterated models on Hugging Face</a>: the earlier builds are there now, and the new ones with full cards follow.</li>
+            <li>The models on Hugging Face, as GGUF with an Ollama Modelfile: <a href="https://huggingface.co/NuevaTechLLC/Qwen3-8B-abliterated-v3.2-GGUF">Qwen3-8B</a>, <a href="https://huggingface.co/NuevaTechLLC/gemma-3-12b-it-abliterated-v3.2-GGUF">gemma-3-12b</a>, <a href="https://huggingface.co/NuevaTechLLC/gemma-3-27b-it-abliterated-v3.2-GGUF">gemma-3-27b</a> and <a href="https://huggingface.co/NuevaTechLLC/Qwen3.8-27B-abliterated-v3.2-GGUF">Qwen3.8-27B</a>.</li>
           </ul>
           <p>Compute came from the National Research Platform, which did not review or endorse this work. If you want numbers like these on your own models, or a red team that measures before it claims, <a href="../#contact">get in touch</a>.</p>
         </article>
