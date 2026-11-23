@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
+  <link rel="alternate" type="text/markdown" href="https://github.com/Limitlessmatrix/abliteration-study/blob/main/paper/PAPER.md" title="Paper (Markdown)" />
+  <link rel="alternate" type="application/json" href="https://github.com/Limitlessmatrix/abliteration-study/blob/main/paper/data/results.json" title="All results (JSON)" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -16,7 +18,12 @@
     "headline": "Removing Refusals With Less Damage: What Worked, What Did Not, and Why",
     "datePublished": "2026-11-22",
     "author": {"@type": "Organization", "name": "Nueva Tech", "url": "https://nuevatech.cloud"},
-    "about": ["abliteration", "refusal direction", "open weight language models", "model editing", "AI red teaming"]
+    "about": ["abliteration", "refusal direction", "open weight language models", "model editing", "AI red teaming"],
+    "isBasedOn": [
+      {"@type": "ScholarlyArticle", "name": "Removing refusals with less damage: what worked, what did not, and why", "url": "https://github.com/Limitlessmatrix/abliteration-study/blob/main/paper/PAPER.md"},
+      {"@type": "SoftwareSourceCode", "name": "Abliteration framework", "codeRepository": "https://github.com/Limitlessmatrix/abliteration-study", "license": "https://www.apache.org/licenses/LICENSE-2.0"},
+      {"@type": "Dataset", "name": "Study results", "url": "https://github.com/Limitlessmatrix/abliteration-study/blob/main/paper/data/results.json"}
+    ]
   }
   </script>
 </head>
@@ -95,12 +102,14 @@
           </ul>
 
           <h2>What we are releasing, and why</h2>
-          <p>We think the measurement is the most useful part of this work, so all of it is being released: the paper, the framework under Apache 2.0, every number in machine readable form, and the edited Qwen3-8B, gemma-3-12b, gemma-3-27b and Qwen3.8-27B models with cards that state their refusal rate, their damage, and where a competitor does better. Our fine tuned security models stay private.</p>
+          <p>We think the measurement is the most useful part of this work, so it is open: the paper, the framework under Apache 2.0 and every number in machine readable form. The edited Qwen3-8B, gemma-3-12b, gemma-3-27b and Qwen3.8-27B models follow on Hugging Face, with cards that state their refusal rate, their damage, and where a competitor does better. Our fine tuned security models stay private.</p>
           <p>There is also a message here for anyone shipping open weights. On several models a single rank one edit removed most refusals at a damage level close to the measurement noise. Refusal training on its own is a thin layer of protection once the weights are public. Knowing how thin, with real numbers, is better than guessing.</p>
 
           <h2>Read it, use it</h2>
           <ul>
-            <li>The paper, the framework (with <code>AGENTS.md</code> and <code>llms.txt</code> written for coding agents) and every result as JSON, including the 598 paired tests, are being published next. We will link them here when they are live.</li>
+            <li><a href="https://github.com/Limitlessmatrix/abliteration-study/blob/main/paper/PAPER.md">The paper</a>: every table, every caveat, and the mistakes we corrected along the way.</li>
+            <li><a href="https://github.com/Limitlessmatrix/abliteration-study">The framework</a>: search, edit, evaluate and export adapters. Its <code>AGENTS.md</code> and <code>llms.txt</code> are written for coding agents.</li>
+            <li><a href="https://github.com/Limitlessmatrix/abliteration-study/blob/main/paper/data/results.json">All results as JSON</a> and the <a href="https://github.com/Limitlessmatrix/abliteration-study/blob/main/paper/data/paired_tests.csv">598 paired tests</a>.</li>
             <li><a href="https://huggingface.co/NuevaTechLLC">Our abliterated models on Hugging Face</a>: the earlier builds are there now, and the new ones with full cards follow.</li>
           </ul>
           <p>Compute came from the National Research Platform, which did not review or endorse this work. If you want numbers like these on your own models, or a red team that measures before it claims, <a href="../#contact">get in touch</a>.</p>
